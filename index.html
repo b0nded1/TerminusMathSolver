@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminus Math Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f5e7;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Terminus Math Solver</h1>
+        <form id="solverForm">
+            <label for="xSymbol">Enter symbol for X:</label>
+            <select id="xSymbol">
+                <option value="single_circle">Single Circle</option>
+                <option value="shaded_circle">Shaded Circle</option>
+                <option value="overlapping_circles">Overlapping Circles</option>
+                <option value="double_shaded">Double Shaded</option>
+                <option value="butterfly_left">Butterfly Left</option>
+                <option value="butterfly_right">Butterfly Right</option>
+            </select>
+
+            <label for="ySymbol">Enter symbol for Y:</label>
+            <select id="ySymbol">
+                <option value="single_circle">Single Circle</option>
+                <option value="shaded_circle">Shaded Circle</option>
+                <option value="overlapping_circles">Overlapping Circles</option>
+                <option value="double_shaded">Double Shaded</option>
+                <option value="butterfly_left">Butterfly Left</option>
+                <option value="butterfly_right">Butterfly Right</option>
+            </select>
+
+            <label for="zSymbol">Enter symbol for Z:</label>
+            <select id="zSymbol">
+                <option value="single_circle">Single Circle</option>
+                <option value="shaded_circle">Shaded Circle</option>
+                <option value="overlapping_circles">Overlapping Circles</option>
+                <option value="double_shaded">Double Shaded</option>
+                <option value="butterfly_left">Butterfly Left</option>
+                <option value="butterfly_right">Butterfly Right</option>
+            </select>
+
+            <button type="button" onclick="calculateResults()">Calculate</button>
+        </form>
+
+        <div id="result" style="display: none;">
+            <h3>Results:</h3>
+            <p id="result1"></p>
+            <p id="result2"></p>
+            <p id="result3"></p>
+        </div>
+    </div>
+
+    <script>
+        // Mapping symbols to values
+        const symbolToValue = {
+            "single_circle": 0,
+            "shaded_circle": 11,
+            "overlapping_circles": 10,
+            "double_shaded": 22,
+            "butterfly_left": 21,
+            "butterfly_right": 20
+        };
+
+        function calculateResults() {
+            // Get selected values
+            const xSymbol = document.getElementById("xSymbol").value;
+            const ySymbol = document.getElementById("ySymbol").value;
+            const zSymbol = document.getElementById("zSymbol").value;
+
+            // Get numerical values for X, Y, and Z
+            const X = symbolToValue[xSymbol];
+            const Y = symbolToValue[ySymbol];
+            const Z = symbolToValue[zSymbol];
+
+            // Validate input values
+            if (X === undefined || Y === undefined || Z === undefined) {
+                alert("Invalid symbol entered. Please choose from the valid options.");
+                return;
+            }
+
+            // Display the mapped values
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result1").innerText = `1. 2X + 11 = ${2 * X + 11}`;
+            document.getElementById("result2").innerText = `2. (2Z + Y) - 5 = ${(2 * Z + Y) - 5}`;
+            document.getElementById("result3").innerText = `3. |(Y + Z) - X| = ${Math.abs((Y + Z) - X)}`;
+        }
+    </script>
+</body>
+</html>
